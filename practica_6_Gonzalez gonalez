@@ -1,0 +1,139 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPxPSkidC6ZACBLTvqcSCPZ",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Hector621/Probabilidad-/blob/main/practica_6_Gonzalez%20gonalez\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 7,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 228
+        },
+        "id": "MHlhuVdbPTeb",
+        "outputId": "ba2b268f-5abc-41df-a9a3-d9a7d83b9ca0"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount(\"/content/drive\", force_remount=True).\n"
+          ]
+        },
+        {
+          "output_type": "error",
+          "ename": "TypeError",
+          "evalue": "'str' object is not callable",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mTypeError\u001b[0m                                 Traceback (most recent call last)",
+            "\u001b[0;32m<ipython-input-7-d3d9200b813c>\u001b[0m in \u001b[0;36m<cell line: 13>\u001b[0;34m()\u001b[0m\n\u001b[1;32m     11\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     12\u001b[0m \u001b[0;31m# Estadísticas descriptivas básicas\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 13\u001b[0;31m \u001b[0mbasic_stats\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mautos\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m     14\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     15\u001b[0m \u001b[0;31m# Valor mínimo y máximo de precios\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;31mTypeError\u001b[0m: 'str' object is not callable"
+          ]
+        }
+      ],
+      "source": [
+        "import pandas as pd\n",
+        "import matplotlib.pyplot as plt\n",
+        "import seaborn as sns\n",
+        "\n",
+        "# Cargar el conjunto de datos (asegúrate de tener el archivo CSV o el formato correcto)\n",
+        "from google.colab import drive\n",
+        "drive.mount('/content/drive')\n",
+        "\n",
+        "path = '/content/drive/My Drive/'\n",
+        "autos = 'autos2.csv'\n",
+        "\n",
+        "# Estadísticas descriptivas básicas\n",
+        "basic_stats = autos()\n",
+        "\n",
+        "# Valor mínimo y máximo de precios\n",
+        "min_price = df['price'].min()\n",
+        "max_price = df['price'].max()\n",
+        "\n",
+        "# Moda, media y mediana de precios\n",
+        "mode_price = df['price'].mode()[0]\n",
+        "mean_price = df['price'].mean()\n",
+        "median_price = df['price'].median()\n",
+        "\n",
+        "# Desviación estándar de precios\n",
+        "std_price = df['price'].std()\n",
+        "\n",
+        "# Histograma de precios\n",
+        "plt.figure(figsize=(10, 6))\n",
+        "plt.hist(df['price'], bins='sturges', color='skyblue', edgecolor='black')\n",
+        "plt.title('Histograma de Precios de Automóviles')\n",
+        "plt.xlabel('Precio')\n",
+        "plt.ylabel('Frecuencia')\n",
+        "plt.show()\n",
+        "\n",
+        "# Diagrama de caja y bigotes para body style\n",
+        "plt.figure(figsize=(12, 8))\n",
+        "sns.boxplot(x='body_style', y='price', data=df)\n",
+        "plt.title('Relación entre Precio y Tipo de Carrocería')\n",
+        "plt.xlabel('Tipo de Carrocería')\n",
+        "plt.ylabel('Precio')\n",
+        "plt.show()\n",
+        "\n",
+        "# Diagrama de caja y bigotes para drive wheels\n",
+        "plt.figure(figsize=(12, 8))\n",
+        "sns.boxplot(x='drive_wheels', y='price', data=df)\n",
+        "plt.title('Relación entre Precio y Tipo de Tracción de Ruedas')\n",
+        "plt.xlabel('Tipo de Tracción de Ruedas')\n",
+        "plt.ylabel('Precio')\n",
+        "plt.show()\n",
+        "\n",
+        "# Diagrama de caja y bigotes para engine location\n",
+        "plt.figure(figsize=(12, 8))\n",
+        "sns.boxplot(x='engine_location', y='price', data=df)\n",
+        "plt.title('Relación entre Precio y Ubicación del Motor')\n",
+        "plt.xlabel('Ubicación del Motor')\n",
+        "plt.ylabel('Precio')\n",
+        "plt.show()\n",
+        "\n",
+        "# Conclusiones generales\n",
+        "# ... Puedes agregar tus propias conclusiones aquí ...\n",
+        "\n",
+        "# Mostrar estadísticas descriptivas básicas\n",
+        "print(\"Estadísticas Descriptivas Básicas:\")\n",
+        "print(basic_stats)\n",
+        "\n",
+        "# Mostrar valores específicos\n",
+        "print(f\"Valor Mínimo de Precios: {min_price}\")\n",
+        "print(f\"Valor Máximo de Precios: {max_price}\")\n",
+        "print(f\"Moda de Precios: {mode_price}\")\n",
+        "print(f\"Media de Precios: {mean_price}\")\n",
+        "print(f\"Mediana de Precios: {median_price}\")\n",
+        "print(f\"Desviación Estándar de Precios: {std_price}\")\n",
+        "\n",
+        "#conlucion\n",
+        "esto nos puede ayudar a saber todo los datos que queremos y asi poner orden o saber con mas certesa ciertas cosas asi como el maximo el minimo etc.\n"
+      ]
+    }
+  ]
+}
